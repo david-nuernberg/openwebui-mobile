@@ -1,23 +1,20 @@
 workflows:
-  # Der Name des Workflows
   build:
-    # Setze das Arbeitsverzeichnis auf das 'src' Verzeichnis
-    workspace: src
-    # Das Verzeichnis für den Build
+    name: Build Workflow
+    # Define your build environment
+    environment:
+      flutter: "2.10"
+      python: "3.9"
+    # Set the directory for the project (if your files are in 'src', we will change it in the script section)
     script:
-      - echo "Start building project"
-      - pip install -r requirements.txt  # Installiere Abhängigkeiten im 'src'-Verzeichnis
-      - python src/main.py  # Starte die Anwendung oder deinen spezifischen Befehl
+      # Beispiel für die Installation der Abhängigkeiten
+      - cd src && pip install -r requirements.txt  # Wechsel in das 'src' Verzeichnis und installiere Abhängigkeiten
+      - cd src && python main.py  # Starte die Anwendung aus dem 'src' Verzeichnis
+    # Erstelle und veröffentliche Artefakte (optional, abhängig von deiner Zielplattform)
     artifacts:
-      # Definiert die Dateien, die nach der Ausführung als Artefakte hochgeladen werden
       - build/*.apk
       - build/*.ipa
+    # Hier wird keine Google Play-Veröffentlichung mehr berücksichtigt
     publishing:
-      # Beispiel für die Veröffentlichung einer App (falls erforderlich)
-      google_play:
-        credentials: GOOGLE_PLAY_CREDENTIALS
-        track: production
-    environment:
-      vars:
-        PYTHON_VERSION: "3.9"
-        FLUTTER_VERSION: "2.10"
+      app_store:
+        credentials: $APP_STORE_CREDENTIALS  # Für App Store kann der verschlüsselte Wert oder Umgebungsvariable verwendet werden
