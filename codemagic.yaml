@@ -2,12 +2,10 @@ workflows:
   ios_build:
     name: iOS Build Workflow
     environment:
-      xcode: "13.0"  # Definiert die Xcode-Version
-      flutter: "3.0"  # Flutter Version
-    script:
-      # Holen von Abhängigkeiten
-      - flutter pub get
-      # Build für iOS
-      - flutter build ios --release
+      xcode: "13.0"  # Setzt die Xcode-Version, die du verwenden möchtest
+      flutter: "3.0"  # Setzt die Flutter-Version
+    scripts:
+      - flutter pub get  # Holt alle benötigten Abhängigkeiten
+      - flutter build ios --release  # Baut das iOS-Projekt im Release-Modus
     artifacts:
-      - build/ios/iphoneos/*.ipa  # Beispiel für die IPA-Datei als Artefakt
+      - build/ios/iphoneos/*.ipa  # Definiert das Artefakt, das erstellt wird
