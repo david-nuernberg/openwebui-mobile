@@ -1,10 +1,14 @@
 workflows:
   ios_build:
-    name: Build iOS for Testing
+    name: Build iOS App with WebView for PWA
     max_build_duration: 60
     environment:
-      flutter: stable
+      xcode: "13.0"  # Stelle sicher, dass du eine unterstützte Xcode-Version verwendest
     scripts:
-      - cd src/OpenWebUI  # Wechsel zum richtigen Verzeichnis
-      - flutter pub get
-      - flutter build ios --no-codesign
+      - echo "Installing CocoaPods dependencies"
+      - gem install cocoapods  # Installiere CocoaPods, falls nicht vorhanden
+      - cd src/OpenWebUI  # Gehe zum Xcode-Projektverzeichnis
+      - pod install  # Installiere die iOS-Abhängigkeiten
+      - xcodebuild clean build -workspace OpenWebUI.xcworkspace -scheme OpenWebUI -configuration Release  # Baue das iOS-Projekt
+    ios:
+      build: true
