@@ -4,12 +4,6 @@ workflows:
     max_build_duration: 60
     environment:
       flutter: stable
-    ios:
-      build: true
-      distribution: testflight # Für TestFlight, wenn du es testen möchtest
     scripts:
       - flutter pub get
       - flutter build ios --no-codesign
-    publishing:
-      app_store:
-        credentials: <base64_encoded_app_store_credentials>
