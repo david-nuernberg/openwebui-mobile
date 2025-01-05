@@ -1,11 +1,15 @@
 workflows:
   ios_build:
-    name: iOS Build Workflow
+    name: Build iOS for Testing
+    max_build_duration: 60
     environment:
-      xcode: "16.0"  # Setze die Xcode-Version auf 16.0
-      flutter: "3.0.0"  # Setze die Flutter-Version auf 3.0.0
+      flutter: stable
+    ios:
+      build: true
+      distribution: testflight # Für TestFlight, wenn du es testen möchtest
     scripts:
-      - flutter pub get  # Holt alle benötigten Abhängigkeiten
-      - flutter build ios --release  # Baut das iOS-Projekt im Release-Modus
-    artifacts:
-      - build/ios/iphoneos/*.ipa  # Definiert das Artefakt, das erstellt wird
+      - flutter pub get
+      - flutter build ios --no-codesign
+    publishing:
+      app_store:
+        credentials: <base64_encoded_app_store_credentials>
