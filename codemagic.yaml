@@ -5,5 +5,6 @@ workflows:
     environment:
       flutter: stable
     scripts:
+      - cd src/OpenWebUI  # Wechsel zum richtigen Verzeichnis
       - flutter pub get
       - flutter build ios --no-codesign
