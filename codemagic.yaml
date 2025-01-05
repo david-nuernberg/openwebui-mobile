@@ -10,5 +10,3 @@ workflows:
       - cd src/OpenWebUI  # Gehe zum Xcode-Projektverzeichnis
       - pod install  # Installiere die iOS-Abhängigkeiten
       - xcodebuild clean build -workspace OpenWebUI.xcworkspace -scheme OpenWebUI -configuration Release  # Baue das iOS-Projekt
-    ios:
-      build: true
