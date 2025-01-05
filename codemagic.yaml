@@ -1,0 +1,23 @@
+workflows:
+  # Der Name des Workflows
+  build:
+    # Setze das Arbeitsverzeichnis auf das 'src' Verzeichnis
+    workspace: src
+    # Das Verzeichnis für den Build
+    script:
+      - echo "Start building project"
+      - pip install -r requirements.txt  # Installiere Abhängigkeiten im 'src'-Verzeichnis
+      - python src/main.py  # Starte die Anwendung oder deinen spezifischen Befehl
+    artifacts:
+      # Definiert die Dateien, die nach der Ausführung als Artefakte hochgeladen werden
+      - build/*.apk
+      - build/*.ipa
+    publishing:
+      # Beispiel für die Veröffentlichung einer App (falls erforderlich)
+      google_play:
+        credentials: GOOGLE_PLAY_CREDENTIALS
+        track: production
+    environment:
+      vars:
+        PYTHON_VERSION: "3.9"
+        FLUTTER_VERSION: "2.10"
