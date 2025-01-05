@@ -1,20 +1,13 @@
 workflows:
-  build:
-    name: Build Workflow
-    # Define your build environment
+  ios_build:
+    name: iOS Build Workflow
     environment:
-      flutter: "2.10"
-      python: "3.9"
-    # Set the directory for the project (if your files are in 'src', we will change it in the script section)
+      xcode: "13.0"  # Definiert die Xcode-Version
+      flutter: "3.0"  # Flutter Version
     script:
-      # Beispiel für die Installation der Abhängigkeiten
-      - cd src && pip install -r requirements.txt  # Wechsel in das 'src' Verzeichnis und installiere Abhängigkeiten
-      - cd src && python main.py  # Starte die Anwendung aus dem 'src' Verzeichnis
-    # Erstelle und veröffentliche Artefakte (optional, abhängig von deiner Zielplattform)
+      # Holen von Abhängigkeiten
+      - flutter pub get
+      # Build für iOS
+      - flutter build ios --release
     artifacts:
-      - build/*.apk
-      - build/*.ipa
-    # Hier wird keine Google Play-Veröffentlichung mehr berücksichtigt
-    publishing:
-      app_store:
-        credentials: $APP_STORE_CREDENTIALS  # Für App Store kann der verschlüsselte Wert oder Umgebungsvariable verwendet werden
+      - build/ios/iphoneos/*.ipa  # Beispiel für die IPA-Datei als Artefakt
