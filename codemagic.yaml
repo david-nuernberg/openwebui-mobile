@@ -2,8 +2,8 @@ workflows:
   ios_build:
     name: iOS Build Workflow
     environment:
-      xcode: "12.5.1"  # Verwende eine unterstützte Xcode-Version
-      flutter: "3.0"    # Verwende die Flutter-Version, die du benötigst
+      xcode: "16.0"  # Setze die Xcode-Version auf 16.0
+      flutter: "3.0"  # Verwende die Flutter-Version, die du benötigst
     scripts:
       - flutter pub get  # Holt alle benötigten Abhängigkeiten
       - flutter build ios --release  # Baut das iOS-Projekt im Release-Modus
