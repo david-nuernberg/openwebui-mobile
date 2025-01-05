@@ -3,7 +3,7 @@ workflows:
     name: Build iOS App with WebView for PWA
     max_build_duration: 60
     environment:
-      xcode: "13.0"  # Stelle sicher, dass du eine unterstützte Xcode-Version verwendest
+      xcode: "16.0"  # Stelle sicher, dass du eine unterstützte Xcode-Version verwendest
     scripts:
       - echo "Installing CocoaPods dependencies"
       - gem install cocoapods  # Installiere CocoaPods, falls nicht vorhanden
